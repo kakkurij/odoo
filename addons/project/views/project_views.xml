@@ -446,6 +446,7 @@
                     <group>
                         <field name="name" class="o_project_name oe_inline"
                             string="Project Name" placeholder="e.g. Office Party"/>
+                        <field name="project_type" class="oe_inline" string="Tyyppi" />
                         <field name="user_id" invisible="1"/>
                         <field name="allow_recurring_tasks" groups="project.group_project_recurring_tasks" />
                     </group>
