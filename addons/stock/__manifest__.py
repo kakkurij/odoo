@@ -7,7 +7,7 @@
     'summary': 'Manage your stock and logistics activities',
     'description': "",
     'website': 'https://www.odoo.com/page/warehouse',
-    'depends': ['product', 'barcodes', 'digest'],
+    'depends': ['product', 'barcodes', 'digest', 'project'],
     'category': 'Inventory/Inventory',
     'sequence': 25,
     'demo': [
@@ -56,6 +56,7 @@
         'wizard/stock_track_confirmation_views.xml',
         'wizard/stock_orderpoint_snooze_views.xml',
         'wizard/stock_package_destination_views.xml',
+        'wizard/stock_picking_file.xml',
 
         'views/res_partner_views.xml',
         'views/product_strategy_views.xml',

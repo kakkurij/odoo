@@ -16,6 +16,7 @@ greenlet==0.4.17 ; python_version > '3.7'
 html2text==2018.1.9
 idna==2.6
 Jinja2==2.10.1; python_version < '3.8'
+jingtrang
 # bullseye version, focal patched 2.10
 Jinja2==2.11.2; python_version >= '3.8'
 libsass==0.17.0
@@ -27,6 +28,8 @@ Mako==1.0.7
 MarkupSafe==1.1.0
 num2words==0.5.6
 ofxparse==0.19
+openpyxl==3.0.7
+pandas==1.2.4
 passlib==1.7.1
 Pillow==5.4.1 ; python_version <= '3.7' and sys_platform != 'win32'
 Pillow==6.1.0 ; python_version <= '3.7' and sys_platform == 'win32'

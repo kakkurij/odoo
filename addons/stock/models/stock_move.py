@@ -180,6 +180,10 @@ class StockMove(models.Model):
     forecast_expected_date = fields.Datetime('Forecasted Expected date', compute='_compute_forecast_information')
     lot_ids = fields.Many2many('stock.production.lot', compute='_compute_lot_ids', inverse='_set_lot_ids', string='Serial Numbers', readonly=False)
 
+    # Project centered fields
+    project_id = fields.Many2one('project.project', 'Projekti')
+    cost_centre_id = fields.Many2one('project.project', 'Kustannuspaikka')
+
     @api.onchange('product_id', 'picking_type_id')
     def onchange_product(self):
         if self.product_id:

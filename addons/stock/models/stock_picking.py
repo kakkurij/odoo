@@ -385,7 +385,13 @@ class Picking(models.Model):
     _sql_constraints = [
         ('name_uniq', 'unique(name, company_id)', 'Reference must be unique per company!'),
     ]
-
+    
+    
+    # Project centered fields
+    project_id = fields.Many2one('project.project', 'Projekti', domain=[('project_type', '=', 'projects')])
+    cost_centre_id = fields.Many2one('project.project', 'Kustannuspaikka', domain=[('project_type', '!=', 'projects')])
+    
+  
     def _compute_has_tracking(self):
         for picking in self:
             picking.has_tracking = any(m.has_tracking != 'none' for m in picking.move_lines)
@@ -741,6 +747,26 @@ class Picking(models.Model):
     def action_cancel(self):
         self.mapped('move_lines')._action_cancel()
         self.write({'is_locked': True})
+        return True
+    
+    def action_import_file(self):
+        # Create stock move?
+        # Assign that created move to move_ids_without_package
+        new_move = self.env['stock.move'].create({
+                'name': 'Netvisor-move',
+                'product_id': 1,
+                'product_uom_qty': 1,
+                'product_uom': 1,
+                'description_picking': 'description',
+                'location_id': 1,
+                'location_dest_id': 2,
+                'picking_id': self.id,
+                'state': 'draft',
+                'picking_type_id': 1,
+                'company_id': 1
+            })
+        
+        print(new_move)
         return True
 
     def _action_done(self):

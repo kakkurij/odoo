@@ -19,3 +19,10 @@ from . import stock_warehouse
 from . import stock_scrap
 from . import product
 from . import stock_package_level
+
+
+# This should NOT be imported!
+# from . import stock_picking_file
+
+# This one should be imported
+from . import stock_fileimport

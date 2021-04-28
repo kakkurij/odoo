@@ -256,6 +256,9 @@
                     <button name="action_toggle_is_locked" attrs="{'invisible': [('is_locked', '=', True)]}" string="Lock" groups="stock.group_stock_manager" type="object"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,assigned,done" />
                     <button name="action_cancel" attrs="{'invisible': [('state', 'not in', ('assigned', 'confirmed', 'partially_available', 'draft', 'waiting'))]}" string="Cancel" groups="base.group_user" type="object"/>
+
+                    <button name="%(stock.stock_picking_file_wizard)d" string="Import file" groups="stock.group_stock_user" type="action" class="oe_highlight"/>
+                    <!-- attrs="{'invisible': [('move_line_exist', '=', True)]}" -->
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
@@ -303,6 +306,7 @@
                             <field name="location_id" options="{'no_create': True}" groups="stock.group_stock_multi_locations" attrs="{'invisible': [('picking_type_code', '=', 'incoming')]}"/>
                             <field name="location_dest_id" options="{'no_create': True}" groups="stock.group_stock_multi_locations" attrs="{'invisible': [('picking_type_code', '=', 'outgoing')]}"/>
                             <field name="backorder_id" attrs="{'invisible': [('backorder_id','=',False)]}"/>
+                            <field name="cost_centre_id" string="Cost Center" options="{'no_create': True}" attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}"/> 
                         </group>
                         <group>
                             <label for="scheduled_date"/>
@@ -321,6 +325,7 @@
                             <field name="origin" placeholder="e.g. PO0032"/>
                             <field name="owner_id" groups="stock.group_tracking_owner"
                                    attrs="{'invisible': [('picking_type_code', '!=', 'incoming')]}"/>
+                            <field name="project_id" string="Project" options="{'no_create': True}" attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}"/>
                         </group>
                     </group>
                     <notebook>
@@ -498,6 +503,7 @@
             </field>
         </record>
 
+
         <record id="action_picking_tree_all" model="ir.actions.act_window">
             <field name="name">Transfers</field>
             <field name="res_model">stock.picking</field>
@@ -542,6 +548,22 @@
         </record>
 
         <menuitem id="all_picking" name="Transfers" parent="menu_stock_warehouse_mgmt" sequence="5" action="action_picking_tree_all" groups="stock.group_stock_manager,stock.group_stock_user"/>
+
+
+        <!-- <record id="action_file_picking" model="ir.actions.act_window">
+
+            <field name="name">Pick File</field>
+            <field name="model">stock.filepicking</field>
+            <field eval="12" name="priority"/>
+            <field name="arch" type="xml">
+                <form string="Transfer">
+
+                    <field name="name"/>
+                </form>
+            </field>
+        </record>
+
+        <menuitem id="file_picking" name="Pick from file" parent="menu_stock_warehouse_mgmt" sequence="5" action="action_file_picking" groups="stock.group_stock_manager,stock.group_stock_user"/> -->
 
         <record id="stock_picking_action_picking_type" model="ir.actions.act_window">
             <field name="name">All Transfers</field>
