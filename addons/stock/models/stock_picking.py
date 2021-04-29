@@ -388,8 +388,8 @@ class Picking(models.Model):
     
     
     # Project centered fields
-    project_id = fields.Many2one('project.project', 'Projekti', domain=[('project_type', '=', 'projects')])
-    cost_centre_id = fields.Many2one('project.project', 'Kustannuspaikka', domain=[('project_type', '!=', 'projects')])
+    project_id = fields.Many2one('project.project', 'Projekti', domain=[('project_type', '=', 'project')])
+    cost_centre_id = fields.Many2one('project.project', 'Kustannuspaikka', domain=[('project_type', '!=', 'project')])
     
   
     def _compute_has_tracking(self):
