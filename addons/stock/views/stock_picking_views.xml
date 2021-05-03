@@ -257,7 +257,7 @@
                     <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,assigned,done" />
                     <button name="action_cancel" attrs="{'invisible': [('state', 'not in', ('assigned', 'confirmed', 'partially_available', 'draft', 'waiting'))]}" string="Cancel" groups="base.group_user" type="object"/>
 
-                    <button name="%(stock.stock_picking_file_wizard)d" string="Import file" groups="stock.group_stock_user" type="action" class="oe_highlight"/>
+                    <button name="%(stock.stock_picking_file_wizard)d" string="Import file" groups="base.group_user" type="action" class="oe_highlight"/>
                     <!-- attrs="{'invisible': [('move_line_exist', '=', True)]}" -->
                 </header>
                 <sheet>
